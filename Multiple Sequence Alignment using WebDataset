@@ -1,0 +1,29 @@
+import webdataset as wds
+from Bio import AlignIO
+from Bio.Align import MultipleSeqAlignment
+
+# Define a function to create a WebDataset
+def create_webdataset(file_path):
+    # Create a WebDataset object
+    dataset = wds.WebDataset(file_path)
+    return dataset
+
+# Define a function to perform multiple sequence alignment
+def multiple_sequence_alignment(sequences):
+    alignment = MultipleSeqAlignment(sequences)
+    return alignment
+
+# Define a function to iterate through the dataset and perform alignment
+def iterate_webdataset_and_align(dataset):
+    for sample in dataset:
+        # Assuming each sample contains a 'sequence' key with sequence data
+        sequences = sample['sequence']
+        alignment = multiple_sequence_alignment(sequences)
+        print(alignment)
+
+# Example usage
+if __name__ == '__main__':
+    # Specify the path to your WebDataset
+    file_path = 'path/to/your/webdataset.tar'
+    dataset = create_webdataset(file_path)
+    iterate_webdataset_and_align(dataset)
